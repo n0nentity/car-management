@@ -2,7 +2,7 @@
 
 namespace car_management.Common
 {
-    public class Refuel
+    public class CarRefuel
     {
         public DateTime Date { get; set; }
 

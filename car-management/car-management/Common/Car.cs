@@ -8,7 +8,7 @@ namespace car_management.Common
     public class Car
     {
         private List<CarMaintainance> _carMaintainanceList;
-        private List<Refuel> _refuleList;
+        private List<CarRefuel> _refuleList;
 
         [XmlElement("CarMaintainance")]
         public List<CarMaintainance> CarMaintainanceList
@@ -17,9 +17,9 @@ namespace car_management.Common
             set { _carMaintainanceList = value; }
         }
         [XmlElement("Refuel")]
-        public List<Refuel> RefuelList
+        public List<CarRefuel> RefuelList
         {
-            get { return _refuleList ?? (_refuleList = new List<Refuel>()); }
+            get { return _refuleList ?? (_refuleList = new List<CarRefuel>()); }
             set { _refuleList = value; }
         }
     }

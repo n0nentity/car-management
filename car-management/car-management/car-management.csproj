@@ -80,7 +80,9 @@
     </ApplicationDefinition>
     <Compile Include="Common\Car.cs" />
     <Compile Include="Common\CarMaintainance.cs" />
-    <Compile Include="Common\Refuel.cs" />
+    <Compile Include="Common\CarRefuel.cs" />
+    <Compile Include="ViewModel\CarMaintainanceViewModel.cs" />
+    <Compile Include="ViewModel\CarRefuelViewModel.cs" />
     <Compile Include="ViewModel\CarViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
