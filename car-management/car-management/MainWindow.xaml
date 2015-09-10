@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewModel="clr-namespace:car_management.ViewModel"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
@@ -24,7 +25,15 @@
             <TabItem Header="Tabelle">
             </TabItem>
             <TabItem DockPanel.Dock="Left" Header="Graph">
-                
+                <Grid>
+                    <oxy:PlotView Title="CarGraph"
+                                  IsLegendVisible="False"
+                                  Model="{Binding GraphModel}"
+                                  
+                                  Background="{DynamicResource MaterialDesignBody}">
+                        
+                    </oxy:PlotView>
+                </Grid>
             </TabItem>
         </TabControl>
         
