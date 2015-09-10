@@ -93,6 +93,8 @@
     <Compile Include="Common\Car.cs" />
     <Compile Include="Common\CarMaintainance.cs" />
     <Compile Include="Common\CarRefuel.cs" />
+    <Compile Include="Common\DataManager.cs" />
+    <Compile Include="Common\Project.cs" />
     <Compile Include="ViewModel\CarMaintainanceViewModel.cs" />
     <Compile Include="ViewModel\CarRefuelViewModel.cs" />
     <Compile Include="ViewModel\CarViewModel.cs" />
