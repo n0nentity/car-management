@@ -13,6 +13,12 @@ namespace car_management.ViewModel
         private ObservableCollection<CarMaintainanceViewModel> _carMaintainanceViewModels;
         public Car Car { get; set; }
 
+        public CarViewModel()
+        {
+            if(!IsInDesignMode)
+                throw new Exception();
+        }
+
         public CarViewModel(Car car)
         {
             Car = car;
@@ -52,13 +58,27 @@ namespace car_management.ViewModel
 
         public ObservableCollection<CarRefuelViewModel> CarRefuelViewModels
         {
-            get { return _carRefuelViewModels ; }
+            get 
+            {
+                if (IsInDesignMode)
+                {
+                    return new ObservableCollection<CarRefuelViewModel>(){new CarRefuelViewModel(null), new CarRefuelViewModel(null)};
+                }
+                return _carRefuelViewModels ; 
+            }
             set { _carRefuelViewModels = value; }
         }
 
         public ObservableCollection<CarMaintainanceViewModel> CarMaintainanceViewModels
         {
-            get { return _carMaintainanceViewModels; }
+            get
+            {
+                if (IsInDesignMode)
+                {
+                    return new ObservableCollection<CarMaintainanceViewModel>() { new CarMaintainanceViewModel(null), new CarMaintainanceViewModel(null) };
+                }
+                return _carMaintainanceViewModels;
+            }
             set { _carMaintainanceViewModels = value; }
         }
     }

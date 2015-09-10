@@ -6,11 +6,45 @@
              xmlns:oxy="http://oxyplot.org/wpf"
              xmlns:viewModel="clr-namespace:car_management.ViewModel"
              mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewModel:CarViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="800" d:DesignWidth="1000">
     <Grid>
         <DockPanel>
             <TabControl Foreground="{DynamicResource MaterialDesignBody}" >
                 <TabItem DockPanel.Dock="Left" Header="Tabelle" >
+                    <TabItem.Resources>
+                        <DataTemplate DataType="{x:Type viewModel:CarRefuelViewModel}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Date}"/>
+                                <TextBlock Grid.Column="1" Text="{Binding Liters}"/>
+                                <TextBlock Grid.Column="2" Text="{Binding CostPerLiter}"/>
+                                <TextBlock Grid.Column="3" Text="{Binding KmCtr}"/>
+                                <TextBlock Grid.Column="4" Text="{Binding KmDif}"/>
+                                
+                                
+                            </Grid>
+                        </DataTemplate>
+                        <DataTemplate DataType="{x:Type viewModel:CarMaintainanceViewModel}">
+                            
+                        </DataTemplate>
+                    </TabItem.Resources>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <ListView Grid.Row="0" ItemsSource="{Binding CarRefuelViewModels}"/>
+                        <ListView Grid.Row="1" ItemsSource="{Binding CarMaintainanceViewModels}"/>
+                    </Grid>
                 </TabItem>
                 <TabItem DockPanel.Dock="Left" Header="Graph">
                     <Grid>
