@@ -6,7 +6,7 @@
              xmlns:viewModel="clr-namespace:car_management.ViewModel"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:CarSelectionViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="800" d:DesignWidth="1000">
     <Grid>
         <ListBox ItemsSource="{Binding CarViewModels}">
             <ListBox.ItemTemplate>

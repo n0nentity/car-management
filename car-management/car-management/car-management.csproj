@@ -102,6 +102,9 @@
     <Compile Include="View\CarSelectionView.xaml.cs">
       <DependentUpon>CarSelectionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CarView.xaml.cs">
+      <DependentUpon>CarView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,6 +122,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\CarSelectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -38,6 +38,7 @@ namespace car_management.ViewModel
             }
         }
 
+        public ViewModelBase ActiveView { get; set; }
 
         /// <summary>
         /// Gets the plot model.

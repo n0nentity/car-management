@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="car_management.View.CarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="1000">
+    <Grid>
+        <DockPanel>
+            <TabControl Foreground="{DynamicResource MaterialDesignBody}" >
+                <TabItem DockPanel.Dock="Left" Header="Tabelle" >
+                </TabItem>
+                <TabItem DockPanel.Dock="Left" Header="Graph">
+                    <Grid>
+                        <oxy:PlotView Title="CarGraph"
+                                  IsLegendVisible="False"
+                                  Model="{Binding GraphModel}"
+                                  
+                                  Background="{DynamicResource MaterialDesignBody}">
+
+                        </oxy:PlotView>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </DockPanel>
+        <Button  VerticalAlignment="Top" HorizontalAlignment="Right" Content="Back"/>
+    </Grid>
+</UserControl>
