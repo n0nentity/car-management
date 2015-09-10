@@ -13,8 +13,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
-            <Button Margin="5 5 2.5 5">Load Car</Button>
-            <Button Margin="2.5 5 5 5">New Car</Button>
+            <Button Margin="5 5 2.5 5" Command="{Binding LoadCarsCommand}">Load Cars</Button>
+            <Button Margin="2.5 5 5 5" Command="{Binding AddCarCommand}">Add Car</Button>
         </StackPanel>
         <ListView Grid.Row="1" ItemsSource="{Binding CarViewModels}">
             <ListView.ItemTemplate>

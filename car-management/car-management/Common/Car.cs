@@ -10,6 +10,9 @@ namespace car_management.Common
         private List<CarMaintainance> _carMaintainanceList;
         private List<CarRefuel> _refuleList;
 
+        [XmlAttribute("Name")]
+        public string Name { get; set; }
+
         [XmlElement("CarMaintainance")]
         public List<CarMaintainance> CarMaintainanceList
         {

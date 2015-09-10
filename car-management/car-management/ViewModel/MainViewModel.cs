@@ -54,12 +54,14 @@ namespace car_management.ViewModel
 
         public void NavigateToCarSelection()
         {
-            ActiveViewModel = CarSelectionViewModel;            
+            ActiveViewModel = CarSelectionViewModel;
+            RaisePropertyChanged(() => ActiveViewModel);
         }
 
         public void NavigateToCar(CarViewModel carViewModel)
         {
             ActiveViewModel = carViewModel;
+            RaisePropertyChanged(()=>ActiveViewModel);
         }
 
         /// <summary>

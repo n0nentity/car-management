@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:oxy="http://oxyplot.org/wpf"
+             xmlns:viewModel="clr-namespace:car_management.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="1000">
     <Grid>
@@ -24,6 +25,6 @@
                 </TabItem>
             </TabControl>
         </DockPanel>
-        <Button Margin="5"  VerticalAlignment="Top" HorizontalAlignment="Right" Content="Back"/>
+        <Button Margin="5"  VerticalAlignment="Top" HorizontalAlignment="Right" Content="Back" Command="{Binding BackCommand}"/>
     </Grid>
 </UserControl>

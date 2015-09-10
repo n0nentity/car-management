@@ -10,7 +10,10 @@ namespace car_management.Common
         [XmlElement("SaveDateTime")]
         public string Date
         {
-            get { return DateTime.Now.ToString("yyyy_MM_dd_HH_mm"); }
+            get
+            {
+                return DateTime.Now.ToString("yyyy_MM_dd_HH_mm");
+            }
         }
     }
 }

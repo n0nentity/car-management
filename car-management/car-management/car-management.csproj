@@ -91,6 +91,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\Car.cs" />
+    <Compile Include="Common\CarList.cs" />
     <Compile Include="Common\CarMaintainance.cs" />
     <Compile Include="Common\CarRefuel.cs" />
     <Compile Include="Common\DataManager.cs" />

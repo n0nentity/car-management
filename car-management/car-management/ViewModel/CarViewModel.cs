@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using car_management.Common;
 using GalaSoft.MvvmLight;
@@ -27,14 +28,12 @@ namespace car_management.ViewModel
                 }
                 else
                 {
-                    return _name;
+                    return Car.Name;
                 }
             }
-            set { _name = value; }
         }
-        private string _name;
 
-        public ICommand BackCommand
+        public ICommand CarSelectedCommand
         {
             get
             {
@@ -42,7 +41,7 @@ namespace car_management.ViewModel
             }
         }
 
-        public ICommand CarSelectedCommand
+        public ICommand BackCommand
         {
             get
             {
