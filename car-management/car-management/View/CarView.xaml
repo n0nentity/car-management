@@ -24,6 +24,6 @@
                 </TabItem>
             </TabControl>
         </DockPanel>
-        <Button  VerticalAlignment="Top" HorizontalAlignment="Right" Content="Back"/>
+        <Button Margin="5"  VerticalAlignment="Top" HorizontalAlignment="Right" Content="Back"/>
     </Grid>
 </UserControl>
