@@ -38,9 +38,18 @@ namespace car_management.ViewModel
         {
             get
             {
-                return new RelayCommand(()=>MainViewModel.Instance.NavigateToCarSelection());
+                return new RelayCommand(()=>MainViewModel.Instance.NavigateToCar(this));
             }
         }
+
+        public ICommand CarSelectedCommand
+        {
+            get
+            {
+                return new RelayCommand(() => MainViewModel.Instance.NavigateToCarSelection());
+            }
+        }
+
 
         public ObservableCollection<CarRefuelViewModel> CarRefuelViewModels
         {

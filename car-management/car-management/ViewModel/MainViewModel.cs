@@ -57,6 +57,11 @@ namespace car_management.ViewModel
             ActiveViewModel = CarSelectionViewModel;            
         }
 
+        public void NavigateToCar(CarViewModel carViewModel)
+        {
+            ActiveViewModel = carViewModel;
+        }
+
         /// <summary>
         /// Gets the plot model.
         /// </summary>
