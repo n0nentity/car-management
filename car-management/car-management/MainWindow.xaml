@@ -19,7 +19,16 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        </ResourceDictionary>
+        </ResourceDictionary>     
     </Window.Resources>
-    <view:CarView/>
+    <ContentPresenter Content="{Binding ActiveView}">
+        <ContentPresenter.Resources>
+            <DataTemplate DataType="{x:Type viewModel:CarSelectionViewModel}">
+                <view:CarSelectionView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CarViewModel}">
+                <view:CarView/>
+            </DataTemplate>
+        </ContentPresenter.Resources>
+        </ContentPresenter>
 </Controls:MetroWindow>

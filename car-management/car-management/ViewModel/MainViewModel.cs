@@ -29,13 +29,13 @@ namespace car_management.ViewModel
         {
             if (IsInDesignMode)
             {
-                
-
+                ActiveView = new CarViewModel(null);
             }
             else
             {
-                
+                ActiveView = new CarSelectionViewModel();
             }
+            
         }
 
         public ViewModelBase ActiveView { get; set; }
