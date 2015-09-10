@@ -19,6 +19,7 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ResourceDictionary>
     </Window.Resources>
+    
     <DockPanel >
         <TabControl DockPanel.Dock="Left" Foreground="{DynamicResource MaterialDesignBody}" >
             <TabItem Header="Tabelle">

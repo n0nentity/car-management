@@ -15,6 +15,24 @@ namespace car_management.ViewModel
             Car = car;
         }
 
+        public string Name
+        {
+            get
+            {
+                if (IsInDesignMode)
+                {
+                    return "SCHUBIDU";
+                }
+                else
+                {
+                    return _name;
+                }
+            }
+            set { _name = value; }
+        }
+
+        private string _name;
+
         public ObservableCollection<CarRefuelViewModel> CarRefuelViewModels
         {
             get { return _carRefuelViewModels ; }
