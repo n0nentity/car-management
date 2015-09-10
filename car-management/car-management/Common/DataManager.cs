@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 using Microsoft.Win32;
@@ -10,6 +11,8 @@ namespace car_management.Common
         private static readonly Lazy<DataManager> lazy =
             new Lazy<DataManager>(() => new DataManager());
 
+        private List<Car> _cars;
+
         private DataManager()
         {
         }
@@ -17,6 +20,14 @@ namespace car_management.Common
         public static DataManager Instance
         {
             get { return lazy.Value; }
+        }
+
+        public Project Project { get; set; }
+
+        public List<Car> Cars
+        {
+            get { return _cars ?? (_cars = new List<Car>()); }
+            set { _cars = value; }
         }
 
         public string GetXmlDataFilePath()
@@ -45,7 +56,6 @@ namespace car_management.Common
                 }
                 fileStream.Close();
             }
-
             return filePath;
         }
 
@@ -83,7 +93,7 @@ namespace car_management.Common
 
         public string GetAppDataProjectFilePath()
         {
-            return GetAppDataPath() + "project.xml";
+            return Path.Combine(GetAppDataPath() + "project.xml");
         }
     }
 }
