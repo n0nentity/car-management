@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 using car_management.Common;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace car_management.ViewModel
 {
@@ -30,8 +32,15 @@ namespace car_management.ViewModel
             }
             set { _name = value; }
         }
-
         private string _name;
+
+        public ICommand BackCommand
+        {
+            get
+            {
+                return new RelayCommand(()=>MainViewModel.Instance.NavigateToCarSelection());
+            }
+        }
 
         public ObservableCollection<CarRefuelViewModel> CarRefuelViewModels
         {

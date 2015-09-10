@@ -8,6 +8,10 @@
              d:DataContext="{d:DesignInstance Type=viewModel:CarSelectionViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="800" d:DesignWidth="1000">
     <Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+            <Button Margin="5 5 2.5 5">Load Car</Button>
+            <Button Margin="2.5 5 5 5">New Car</Button>
+        </StackPanel>
         <ListBox ItemsSource="{Binding CarViewModels}">
             <ListBox.ItemTemplate>
                 <DataTemplate>

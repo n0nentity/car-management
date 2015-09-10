@@ -21,7 +21,7 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ResourceDictionary>     
     </Window.Resources>
-    <ContentPresenter Content="{Binding ActiveView}">
+    <ContentPresenter Content="{Binding ActiveViewModel}">
         <ContentPresenter.Resources>
             <DataTemplate DataType="{x:Type viewModel:CarSelectionViewModel}">
                 <view:CarSelectionView/>

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using System.Collections.Generic;
@@ -20,6 +21,13 @@ namespace car_management.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+
+         public static MainViewModel Instance
+        {
+            get { return _instance; }
+        }
+        private static MainViewModel _instance;
+
         private PlotModel _graphModel;
 
         /// <summary>
@@ -27,18 +35,27 @@ namespace car_management.ViewModel
         /// </summary>
         public MainViewModel()
         {
+            _instance = this;
+            CarSelectionViewModel = new CarSelectionViewModel();
+
             if (IsInDesignMode)
             {
-                ActiveView = new CarViewModel(null);
+                ActiveViewModel = new CarViewModel(null);
             }
             else
             {
-                ActiveView = new CarSelectionViewModel();
+                NavigateToCarSelection();
             }
-            
         }
 
-        public ViewModelBase ActiveView { get; set; }
+        public ObservableObject ActiveViewModel { get; set; }
+
+        public ObservableObject CarSelectionViewModel { get; set; }
+
+        public void NavigateToCarSelection()
+        {
+            ActiveViewModel = CarSelectionViewModel;            
+        }
 
         /// <summary>
         /// Gets the plot model.
