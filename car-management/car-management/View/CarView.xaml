@@ -51,9 +51,7 @@
                         <oxy:PlotView Title="CarGraph"
                                   IsLegendVisible="False"
                                   Model="{Binding GraphModel}"
-                                  
                                   Background="{DynamicResource MaterialDesignBody}">
-
                         </oxy:PlotView>
                     </Grid>
                 </TabItem>

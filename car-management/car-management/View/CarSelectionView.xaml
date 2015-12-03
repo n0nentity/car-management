@@ -19,8 +19,14 @@
         <ListView Grid.Row="1" ItemsSource="{Binding CarViewModels}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Button Margin="20" Width="200" Height="100" FontSize="30" Background="Gray" Content="{Binding Name}" Command="{Binding CarSelectedCommand}"/>
+                    <Grid Margin="20">
+                        <Button Width="200" Height="100" FontSize="30" Background="Gray" Content="{Binding Name}" Command="{Binding CarSelectedCommand}">
+                            <Button.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="delete" Command="{Binding DeleteCommand}"/>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                        </Button>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

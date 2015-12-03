@@ -11,9 +11,8 @@ using GalaSoft.MvvmLight.CommandWpf;
 
 namespace car_management.ViewModel
 {
-    class CarSelectionViewModel : ViewModelBase
+    public class CarSelectionViewModel : ViewModelBase
     {
-
         public CarSelectionViewModel()
         {
             if (IsInDesignMode)
@@ -22,8 +21,12 @@ namespace car_management.ViewModel
             }
             else
             {
-                
+               
             }
+        }
+        public void RaisePropertyChanged()
+        {
+            RaisePropertyChanged(()=>CarViewModels);
         }
 
         public ObservableCollection<CarViewModel> CarViewModels
@@ -32,12 +35,12 @@ namespace car_management.ViewModel
             {
                 if (IsInDesignMode)
                 {
-                    return new ObservableCollection<CarViewModel>() { new CarViewModel(null), new CarViewModel(null) };
+                    return new ObservableCollection<CarViewModel>() { new CarViewModel(null,this), new CarViewModel(null,this) };
                 }
                 else
                 {
                     ObservableCollection<CarViewModel> cars = new ObservableCollection<CarViewModel>();
-                    DataManager.Instance.Cars.Cars.ForEach(c => cars.Add(new CarViewModel(c)));
+                    DataManager.Instance.Cars.Cars.ForEach(c => cars.Add(new CarViewModel(c,this)));
                     return cars;
                 }
             }
@@ -60,6 +63,7 @@ namespace car_management.ViewModel
                 project.XmlDatabaseFilePath = filePath;
                 DataManager.Instance.SaveProject(project);
                 DataManager.Instance.LoadCars();
+                RaisePropertyChanged(() => CarViewModels);
             }
 
         }
@@ -76,8 +80,7 @@ namespace car_management.ViewModel
         {
             DataManager.Instance.Cars.Cars.Add(new Car(){Name = "newCar"});
             RaisePropertyChanged(() => CarViewModels);
-
-
+            DataManager.Instance.SaveCars();
         }
 
 

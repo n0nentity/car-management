@@ -45,16 +45,6 @@ namespace car_management.Common
             // Process input if the user clicked OK.
             if (userClickedOk == true)
             {
-                //// Open the selected file to read.
-                //var fileStream = fileDialog.OpenFile();
-
-                //using (var reader = new StreamReader(fileStream))
-                //{
-                //    // Read the first line from the file and write it the textbox.
-                //    filePath = reader.ReadLine();
-                //}
-                //fileStream.Close();
-
                 filePath = fileDialog.FileName;
             }
             return filePath;
@@ -65,7 +55,6 @@ namespace car_management.Common
             var serializer = new XmlSerializer(typeof (Project));
             using (TextWriter writer = new StreamWriter(GetAppDataProjectFilePath()))
             {
-                //TODO: isn't saving the time!
                 serializer.Serialize(writer, project);
             }
         }
@@ -118,11 +107,18 @@ namespace car_management.Common
             Project loadProject = LoadProject();
             if (loadProject != null && !String.IsNullOrEmpty(loadProject.XmlDatabaseFilePath))
             {
-                using (TextReader reader = new StreamReader(loadProject.XmlDatabaseFilePath))
+                using (TextReader tempreader = new StreamReader(loadProject.XmlDatabaseFilePath))
                 {
-                    var deserializer = new XmlSerializer(typeof(CarList));
-                    var obj = deserializer.Deserialize(reader);
-                    _cars = obj as CarList;
+                    string temp = tempreader.ReadToEnd();
+                    if (!string.IsNullOrEmpty(temp))
+                    {
+                        using (TextReader reader = new StreamReader(loadProject.XmlDatabaseFilePath))
+                        {
+                            var deserializer = new XmlSerializer(typeof(CarList));
+                            var obj = deserializer.Deserialize(reader);
+                            Cars = obj as CarList;
+                        }
+                    }
                 }
             }
         }
