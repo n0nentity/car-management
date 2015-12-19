@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 
-namespace car_management.Common.Tools
+namespace car_management.Tools
 {
 	public class ErrorPopupManager
 	{

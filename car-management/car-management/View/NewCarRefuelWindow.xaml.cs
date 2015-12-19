@@ -17,11 +17,11 @@ using MahApps.Metro.Controls;
 namespace car_management.View
 {
     /// <summary>
-    /// Interaktionslogik für NameWindow.xaml
+    /// Interaktionslogik für NewCarRefuelWindow.xaml
     /// </summary>
-    public partial class NameWindow : MetroWindow
+    public partial class NewCarRefuelWindow : MetroWindow
     {
-        public NameWindow()
+        public NewCarRefuelWindow()
         {
             InitializeComponent();
         }
@@ -31,5 +31,7 @@ namespace car_management.View
             this.DialogResult = true;
             this.Close();
         }
+
+
     }
 }

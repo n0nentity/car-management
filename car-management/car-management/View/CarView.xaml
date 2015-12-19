@@ -24,7 +24,7 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding Date}"/>
+                                <TextBlock Grid.Column="0" Text="{Binding DateString}"/>
                                 <TextBlock Grid.Column="1" Text="{Binding Liters}"/>
                                 <TextBlock Grid.Column="2" Text="{Binding CostPerLiter}"/>
                                 <TextBlock Grid.Column="3" Text="{Binding KmCtr}"/>

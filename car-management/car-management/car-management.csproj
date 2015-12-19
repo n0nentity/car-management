@@ -98,6 +98,7 @@
     <Compile Include="Common\Project.cs" />
     <Compile Include="Tools\ErrorPopupBehaviour.cs" />
     <Compile Include="Tools\ErrorPopupManager.cs" />
+    <Compile Include="Tools\MaintainObservableCollection.cs" />
     <Compile Include="ViewModel\CarMaintainanceViewModel.cs" />
     <Compile Include="ViewModel\CarRefuelViewModel.cs" />
     <Compile Include="ViewModel\CarViewModel.cs" />
@@ -114,6 +115,9 @@
     </Compile>
     <Compile Include="View\CarView.xaml.cs">
       <DependentUpon>CarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewCarRefuelWindow.xaml.cs">
+      <DependentUpon>NewCarRefuelWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NameWindow.xaml.cs">
       <DependentUpon>NameWindow.xaml</DependentUpon>
@@ -145,6 +149,10 @@
     <Page Include="View\CarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NewCarRefuelWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\NameWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

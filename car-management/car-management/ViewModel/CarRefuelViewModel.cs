@@ -1,10 +1,9 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using car_management.Common;
-using GalaSoft.MvvmLight;
 using OxyPlot;
 using OxyPlot.Series;
 using System.Windows.Input;
-using car_management.Common;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
@@ -12,6 +11,12 @@ namespace car_management.ViewModel
 {
     public class CarRefuelViewModel : ViewModelBase
     {
+        public CarRefuelViewModel()
+        {
+            if (!IsInDesignMode)
+                throw new Exception("this ctro is for designtime only");
+        }
+
         public CarRefuel CarRefuel { get; set; }
 
         public CarRefuelViewModel(CarRefuel refuel)
@@ -19,7 +24,7 @@ namespace car_management.ViewModel
             CarRefuel = refuel;
         }
 
-        public string Date
+        public string DateString
         {
             get
             {
@@ -28,13 +33,33 @@ namespace car_management.ViewModel
 
                 return CarRefuel.Date.ToShortDateString();
             }
+            set
+            {
+                //todo
+            }
         }
-        static int ctor = 0;
+        public DateTime Date
+        {
+            get
+            {
+                if (IsInDesignMode)
+                    return DateTime.Today;
+
+                return CarRefuel.Date;
+            }
+            set
+            {
+                CarRefuel.Date = value;
+            }
+        }
+
+
+        //static int ctor = 0;
         public DataPoint Point
         {
             get
             {
-                return new DataPoint(ctor++, ctor++);
+                return new DataPoint(Date.Ticks, CarRefuel.CostPerLiter);
             }
         }
 
@@ -42,10 +67,18 @@ namespace car_management.ViewModel
         {
             get
             {
-                if(IsInDesignMode)
+                if (IsInDesignMode)
                     return "55,36 l";
 
-                return CarRefuel.Liter.ToString()+" l";
+                return CarRefuel.Liter.ToString() + " l";
+            }
+            set
+            {
+                double result = 0;
+                if (double.TryParse(value, out result))
+                {
+                    CarRefuel.Liter = result;
+                }
             }
         }
 
@@ -58,6 +91,14 @@ namespace car_management.ViewModel
 
                 return CarRefuel.CostPerLiter.ToString() + "€";
             }
+            set
+            {
+                double result = 0;
+                if (double.TryParse(value, out result))
+                {
+                    CarRefuel.CostPerLiter = result;
+                }
+            }
         }
 
         public string KmCtr
@@ -69,6 +110,15 @@ namespace car_management.ViewModel
 
                 return CarRefuel.Kilometers.ToString() + " km";
             }
+            set
+            {
+                UInt64 result = 0;
+                if (UInt64.TryParse(value, out result))
+                {
+                    CarRefuel.Kilometers = result;
+                }
+            }
+
         }
 
         public string KmDif
@@ -83,7 +133,7 @@ namespace car_management.ViewModel
             }
         }
 
-     
+
 
     }
 }

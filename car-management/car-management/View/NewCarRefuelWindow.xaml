@@ -1,4 +1,4 @@
-﻿<Controls:MetroWindow x:Class="car_management.View.NameWindow"
+﻿<Controls:MetroWindow x:Class="car_management.View.NewCarRefuelWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:viewModel="clr-namespace:car_management.ViewModel"
@@ -14,8 +14,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:tools="clr-namespace:car_management.Tools"
         mc:Ignorable="d" 
-        d:DataContext="{d:DesignInstance Type=viewModel:NameWindowModel, IsDesignTimeCreatable=True}"
-        d:DesignHeight="300" d:DesignWidth="500">
+        d:DataContext="{d:DesignInstance Type=viewModel:CarRefuelViewModel, IsDesignTimeCreatable=True}"
+        d:DesignHeight="1000" d:DesignWidth="500">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -29,10 +29,24 @@
     </Window.Resources>
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBox Margin="10" FontSize="20" Background="White" Foreground="DarkGray" 
-                     Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     tools:ErrorPopupBehaviour.ErrorMessage="{Binding ErrorMessage}"/>
-            <Button Content="Ok" Click="btnOk_Click"/>
+            <StackPanel Orientation="Vertical" Margin="0 0 0 20">
+                <TextBlock Margin="10 10 10 0" FontSize="18" Text="Datum"/>
+                <DatePicker Margin="10" FontSize="20" Foreground="DarkGray" SelectedDate="{Binding Date}"/>
+                <!--<TextBox Margin="10" FontSize="20" Background="White" Foreground="DarkGray" Text="{Binding Date}"/>-->
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0 0 0 20">
+                <TextBlock Margin="10 10 10 0" FontSize="18" Text="Liter"/>
+                <TextBox Margin="10" FontSize="20" Background="White" Foreground="DarkGray" Text="{Binding Liters}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0 0 0 20">
+                <TextBlock Margin="10 10 10 0" FontSize="18" Text="Kosten pro Liter"/>
+                <TextBox Margin="10" FontSize="20" Background="White" Foreground="DarkGray" Text="{Binding CostPerLiter}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="0 0 0 20">
+                <TextBlock Margin="10 10 10 0" FontSize="18" Text="Kilometerstand"/>
+                <TextBox Margin="10" FontSize="20" Background="White" Foreground="DarkGray" Text="{Binding KmCtr}"/>
+            </StackPanel>
+            <Button Content="Ok" Click="btnOk_Click" Margin="0 -10 0 0"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using car_management.Common;
+using car_management.View;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
@@ -79,6 +81,7 @@ namespace car_management.ViewModel
         void AddCar()
         {
             NameWindow window = new NameWindow();
+            window.Owner = Application.Current.MainWindow;
             List<string> notvalid = DataManager.Instance.Cars.Cars.Select(c => c.Name).ToList();
             string startname = "newCar";
             int i = 1;

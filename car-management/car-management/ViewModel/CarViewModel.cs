@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using car_management.Common;
+using car_management.View;
+using car_management.Tools;
 using System.Collections.Generic;
 using OxyPlot;
 using OxyPlot.Series;
@@ -114,7 +117,8 @@ namespace car_management.ViewModel
                     if (_carRefuelViewModels == null)
                     {
                         _carRefuelViewModels = new ObservableCollection<CarRefuelViewModel>();
-                    }
+                    }                  
+                    _carRefuelViewModels.Maintain(Car.RefuelList.Select(r => new CarRefuelViewModel(r)));
                 }
                 return _carRefuelViewModels;
             }
@@ -135,6 +139,7 @@ namespace car_management.ViewModel
                     {
                         _carMaintainanceViewModels = new ObservableCollection<CarMaintainanceViewModel>();
                     }
+                    _carMaintainanceViewModels.Maintain(Car.CarMaintainanceList.Select(r => new CarMaintainanceViewModel(r)));
                 }
                 return _carMaintainanceViewModels;
             }
@@ -183,6 +188,8 @@ namespace car_management.ViewModel
                     {
                         series1.Points.Add(crvm.Point);
                     }
+                    // Add the series to the plot model
+                    _graphModel.Series.Add(series1);
                     return _graphModel;
                 }
 
@@ -199,10 +206,19 @@ namespace car_management.ViewModel
 
         private void addCarRefuel()
         {
-            CarRefuelViewModels.Add(new CarRefuelViewModel(new CarRefuel()));
-            RaisePropertyChanged(() => CarRefuelViewModels);
-            RaisePropertyChanged(() => GraphModel);
-
+            NewCarRefuelWindow window = new NewCarRefuelWindow();
+            window.Owner = Application.Current.MainWindow;
+            CarRefuel refuel = new CarRefuel();
+            refuel.Date = DateTime.Today;
+            CarRefuelViewModel refuelVM = new CarRefuelViewModel(refuel);
+            window.DataContext = refuelVM;
+            if ((bool)window.ShowDialog())
+            {
+                Car.RefuelList.Add(refuel);
+                DataManager.Instance.SaveCars();
+                RaisePropertyChanged(() => CarRefuelViewModels);
+                RaisePropertyChanged(() => GraphModel);
+            }
         }
 
     }
