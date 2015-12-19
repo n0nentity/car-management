@@ -47,8 +47,16 @@ namespace car_management.ViewModel
             Project project = DataManager.Instance.LoadProject();
             if (project != null && !String.IsNullOrEmpty(project.XmlDatabaseFilePath))
             {
-                DataManager.Instance.LoadCars();
-                NavigateToCarSelection();
+                try
+                {
+                    DataManager.Instance.LoadCars();
+                    NavigateToCarSelection();
+                }catch(Exception)
+                {
+                    //TODO ERRORLOG
+                    ActiveViewModel = new CreateProjectViewModel();
+                    RaisePropertyChanged(() => ActiveViewModel);
+                }
             }
             else
             {
