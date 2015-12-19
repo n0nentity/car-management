@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using car_management.Common;
@@ -18,7 +19,7 @@ namespace car_management.ViewModel
 
         public CarViewModel()
         {
-            if(!IsInDesignMode)
+            if (!IsInDesignMode)
                 throw new Exception();
         }
 
@@ -49,7 +50,7 @@ namespace car_management.ViewModel
         {
             get
             {
-                return new RelayCommand(()=>MainViewModel.Instance.NavigateToCar(this));
+                return new RelayCommand(() => MainViewModel.Instance.NavigateToCar(this));
             }
         }
 
@@ -67,6 +68,30 @@ namespace car_management.ViewModel
             Parent.RaisePropertyChanged();
         }
 
+        public ICommand RenameCommand
+        {
+            get
+            {
+                return new RelayCommand(renameCar);
+            }
+        }
+
+        private void renameCar()
+        {
+            NameWindow window = new NameWindow();
+            List<string> notvalid = DataManager.Instance.Cars.Cars.Select(c => c.Name).ToList();
+            NameWindowModel nameVM = new NameWindowModel(notvalid, Name);
+            window.DataContext = nameVM;
+            if ((bool)window.ShowDialog())
+            {
+                Car.Name = nameVM.Name;
+                RaisePropertyChanged(() => Name);
+                DataManager.Instance.SaveCars();
+            }
+            Parent.RaisePropertyChanged();
+        }
+        
+
         public ICommand BackCommand
         {
             get
@@ -78,13 +103,20 @@ namespace car_management.ViewModel
 
         public ObservableCollection<CarRefuelViewModel> CarRefuelViewModels
         {
-            get 
+            get
             {
                 if (IsInDesignMode)
                 {
-                    return new ObservableCollection<CarRefuelViewModel>(){new CarRefuelViewModel(null), new CarRefuelViewModel(null)};
+                    return new ObservableCollection<CarRefuelViewModel>() { new CarRefuelViewModel(null), new CarRefuelViewModel(null) };
                 }
-                return _carRefuelViewModels ; 
+                else
+                {
+                    if (_carRefuelViewModels == null)
+                    {
+                        _carRefuelViewModels = new ObservableCollection<CarRefuelViewModel>();
+                    }
+                }
+                return _carRefuelViewModels;
             }
             set { _carRefuelViewModels = value; }
         }
@@ -96,6 +128,13 @@ namespace car_management.ViewModel
                 if (IsInDesignMode)
                 {
                     return new ObservableCollection<CarMaintainanceViewModel>() { new CarMaintainanceViewModel(null), new CarMaintainanceViewModel(null) };
+                }
+                else
+                {
+                    if (_carMaintainanceViewModels == null)
+                    {
+                        _carMaintainanceViewModels = new ObservableCollection<CarMaintainanceViewModel>();
+                    }
                 }
                 return _carMaintainanceViewModels;
             }
@@ -112,7 +151,7 @@ namespace car_management.ViewModel
                 if (IsInDesignMode)
                 {
                     // Create the plot model
-                    _graphModel = new PlotModel() { Title = "Verbrauchsdaten", Subtitle = "Autoname" };
+                    PlotModel _graphModel = new PlotModel() { Title = "Verbrauchsdaten", Subtitle = "Autoname" };
 
                     // Create two line series (markers are hidden by default)
                     var series1 = new LineSeries { Title = "Series 1", MarkerType = MarkerType.Circle };
@@ -132,11 +171,39 @@ namespace car_management.ViewModel
                     // Add the series to the plot model
                     _graphModel.Series.Add(series1);
                     _graphModel.Series.Add(series2);
+                    return _graphModel;
                 }
-                return _graphModel;
+                else
+                {
+                    // Create the plot model
+                    PlotModel _graphModel = new PlotModel() { Title = "Verbrauchsdaten", Subtitle = Name };
+                    // Create two line series (markers are hidden by default)
+                    var series1 = new LineSeries { Title = "Verbrauch", MarkerType = MarkerType.Circle };
+                    foreach (CarRefuelViewModel crvm in CarRefuelViewModels)
+                    {
+                        series1.Points.Add(crvm.Point);
+                    }
+                    return _graphModel;
+                }
+
             }
         }
-        private PlotModel _graphModel;
+
+        public ICommand AddCarRefuelCommand
+        {
+            get
+            {
+                return new RelayCommand(addCarRefuel);
+            }
+        }
+
+        private void addCarRefuel()
+        {
+            CarRefuelViewModels.Add(new CarRefuelViewModel(new CarRefuel()));
+            RaisePropertyChanged(() => CarRefuelViewModels);
+            RaisePropertyChanged(() => GraphModel);
+
+        }
 
     }
 }

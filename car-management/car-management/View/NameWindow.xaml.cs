@@ -13,19 +13,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
-using car_management.Common.Tools;
 
 namespace car_management
 {
     /// <summary>
-    /// Interaktionslogik für MainWindow.xaml
+    /// Interaktionslogik für NameWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class NameWindow : MetroWindow
     {
-        public MainWindow()
+        public NameWindow()
         {
             InitializeComponent();
-            ErrorPopupManager.Instance.Popup = errorPopup;
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = true;
+            this.Close();
         }
     }
 }

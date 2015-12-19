@@ -16,7 +16,7 @@
             <Button Margin="5 5 2.5 5" Command="{Binding LoadCarsCommand}">Load Cars</Button>
             <Button Margin="2.5 5 5 5" Command="{Binding AddCarCommand}">Add Car</Button>
         </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding CarViewModels}">
+        <ListView Grid.Row="1" ItemsSource="{Binding CarViewModels}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="20">
@@ -24,6 +24,7 @@
                             <Button.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="delete" Command="{Binding DeleteCommand}"/>
+                                    <MenuItem Header="rename" Command="{Binding RenameCommand}"/>
                                 </ContextMenu>
                             </Button.ContextMenu>
                         </Button>

@@ -21,17 +21,30 @@
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         </ResourceDictionary>     
     </Window.Resources>
-    <ContentPresenter Content="{Binding ActiveViewModel}" DataContext="{Binding ActiveViewModel}">
-        <ContentPresenter.Resources>
-            <DataTemplate DataType="{x:Type viewModel:CarSelectionViewModel}">
-                <view:CarSelectionView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:CarViewModel}">
-                <view:CarView/>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type viewModel:CreateProjectViewModel}">
-                <view:CreateProjectView/>
-            </DataTemplate>
-        </ContentPresenter.Resources>
+    <Grid>
+        <ContentPresenter Content="{Binding ActiveViewModel}" DataContext="{Binding ActiveViewModel}">
+            <ContentPresenter.Resources>
+                <DataTemplate DataType="{x:Type viewModel:CarSelectionViewModel}">
+                    <view:CarSelectionView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:CarViewModel}">
+                    <view:CarView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type viewModel:CreateProjectViewModel}">
+                    <view:CreateProjectView/>
+                </DataTemplate>
+            </ContentPresenter.Resources>
         </ContentPresenter>
+        <!-- this is the error popup for invalid input values in e.g. textboxes -->
+        <Popup Name="errorPopup" Placement="Relative" PopupAnimation="Fade" AllowsTransparency="True">
+            <Grid Background="Transparent">
+                <Border CornerRadius="5" BorderThickness="2" Background="DarkRed" MinHeight="20" MinWidth="20">
+                    <TextBlock Grid.Column="1" Margin="5" Foreground="White" Name="PART_Text">User error!</TextBlock>
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="3" ShadowDepth="2"></DropShadowEffect>
+                    </Border.Effect>
+                </Border>
+            </Grid>
+        </Popup>
+    </Grid>
 </Controls:MetroWindow>

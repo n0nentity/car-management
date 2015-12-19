@@ -96,11 +96,14 @@
     <Compile Include="Common\CarRefuel.cs" />
     <Compile Include="Common\DataManager.cs" />
     <Compile Include="Common\Project.cs" />
+    <Compile Include="Tools\ErrorPopupBehaviour.cs" />
+    <Compile Include="Tools\ErrorPopupManager.cs" />
     <Compile Include="ViewModel\CarMaintainanceViewModel.cs" />
     <Compile Include="ViewModel\CarRefuelViewModel.cs" />
     <Compile Include="ViewModel\CarViewModel.cs" />
     <Compile Include="ViewModel\CarSelectionViewModel.cs" />
     <Compile Include="ViewModel\CreateProjectViewModel.cs" />
+    <Compile Include="ViewModel\NameWindowModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="View\CarSelectionView.xaml.cs">
@@ -111,6 +114,9 @@
     </Compile>
     <Compile Include="View\CarView.xaml.cs">
       <DependentUpon>CarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NameWindow.xaml.cs">
+      <DependentUpon>NameWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +145,10 @@
     <Page Include="View\CarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NameWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +186,7 @@
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

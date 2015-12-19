@@ -1,0 +1,38 @@
+﻿<Controls:MetroWindow x:Class="car_management.NameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModel="clr-namespace:car_management.ViewModel"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+        xmlns:view="clr-namespace:car_management.View"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"        
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Title="Name"
+        WindowStyle="ToolWindow" SizeToContent="WidthAndHeight"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:tools="clr-namespace:car_management.Common.Tools"
+        mc:Ignorable="d" 
+        d:DataContext="{d:DesignInstance Type=viewModel:NameWindowModel, IsDesignTimeCreatable=True}"
+        d:DesignHeight="300" d:DesignWidth="500">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <TextBox Margin="10" FontSize="20" Background="White" Foreground="DarkGray" 
+                     Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     tools:ErrorPopupBehaviour.ErrorMessage="{Binding ErrorMessage}"/>
+            <Button Content="Ok" Click="btnOk_Click"/>
+        </StackPanel>
+    </Grid>
+</Controls:MetroWindow>

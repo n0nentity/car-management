@@ -1,6 +1,12 @@
 ﻿using System.Globalization;
 using car_management.Common;
 using GalaSoft.MvvmLight;
+using OxyPlot;
+using OxyPlot.Series;
+using System.Windows.Input;
+using car_management.Common;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 
 namespace car_management.ViewModel
 {
@@ -21,6 +27,14 @@ namespace car_management.ViewModel
                     return "01.01.1990";
 
                 return CarRefuel.Date.ToShortDateString();
+            }
+        }
+        static int ctor = 0;
+        public DataPoint Point
+        {
+            get
+            {
+                return new DataPoint(ctor++, ctor++);
             }
         }
 
@@ -68,6 +82,8 @@ namespace car_management.ViewModel
                 return CarRefuel.Kilometers.ToString() + " km";
             }
         }
+
+     
 
     }
 }
