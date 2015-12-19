@@ -2,7 +2,7 @@
 using System.Globalization;
 using car_management.Common;
 using OxyPlot;
-using OxyPlot.Series;
+using OxyPlot.Axes;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -59,7 +59,7 @@ namespace car_management.ViewModel
         {
             get
             {
-                return new DataPoint(Date.Ticks, CarRefuel.CostPerLiter);
+                return new DataPoint(DateTimeAxis.ToDouble(Date), CarRefuel.CostPerLiter);
             }
         }
 

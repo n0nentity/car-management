@@ -9,6 +9,7 @@ using car_management.Tools;
 using System.Collections.Generic;
 using OxyPlot;
 using OxyPlot.Series;
+using OxyPlot.Axes;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
@@ -93,7 +94,7 @@ namespace car_management.ViewModel
             }
             Parent.RaisePropertyChanged();
         }
-        
+
 
         public ICommand BackCommand
         {
@@ -117,7 +118,7 @@ namespace car_management.ViewModel
                     if (_carRefuelViewModels == null)
                     {
                         _carRefuelViewModels = new ObservableCollection<CarRefuelViewModel>();
-                    }                  
+                    }
                     _carRefuelViewModels.Maintain(Car.RefuelList.Select(r => new CarRefuelViewModel(r)));
                 }
                 return _carRefuelViewModels;
@@ -157,31 +158,56 @@ namespace car_management.ViewModel
                 {
                     // Create the plot model
                     PlotModel _graphModel = new PlotModel() { Title = "Verbrauchsdaten", Subtitle = "Autoname" };
+                    //axes
+                    _graphModel.Axes.Add(new DateTimeAxis
+                    {
+                        Position = AxisPosition.Bottom,
+                        StringFormat = "dd/MM/yyyy",
+                        Title = "Datum",
+                        //MinorIntervalType = DateTimeIntervalType.Months,
+                        IntervalType = DateTimeIntervalType.Days,
+                        //MajorGridlineStyle = LineStyle.Dash,
+                        MinorGridlineStyle = LineStyle.Solid,
+                    });
 
                     // Create two line series (markers are hidden by default)
                     var series1 = new LineSeries { Title = "Series 1", MarkerType = MarkerType.Circle };
-                    series1.Points.Add(new DataPoint(0, 0));
-                    series1.Points.Add(new DataPoint(10, 18));
-                    series1.Points.Add(new DataPoint(20, 12));
-                    series1.Points.Add(new DataPoint(30, 8));
-                    series1.Points.Add(new DataPoint(40, 15));
+                    series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(DateTime.Now), 0));
+                    series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(DateTime.Now.AddDays(5)), 18));
+                    series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(DateTime.Now.AddDays(12)), 12));
+                    series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(DateTime.Now.AddDays(23)), 8));
+                    series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(DateTime.Now.AddDays(49)), 15));
 
-                    var series2 = new LineSeries { Title = "Series 2", MarkerType = MarkerType.Square };
-                    series2.Points.Add(new DataPoint(0, 4));
-                    series2.Points.Add(new DataPoint(10, 12));
-                    series2.Points.Add(new DataPoint(20, 16));
-                    series2.Points.Add(new DataPoint(30, 25));
-                    series2.Points.Add(new DataPoint(40, 5));
+
+                    //var series2 = new LineSeries { Title = "Series 2", MarkerType = MarkerType.Square };
+                    //series2.Points.Add(new DataPoint(0, 4));
+                    //series2.Points.Add(new DataPoint(10, 12));
+                    //series2.Points.Add(new DataPoint(20, 16));
+                    //series2.Points.Add(new DataPoint(30, 25));
+                    //series2.Points.Add(new DataPoint(40, 5));
 
                     // Add the series to the plot model
                     _graphModel.Series.Add(series1);
-                    _graphModel.Series.Add(series2);
+                    //_graphModel.Series.Add(series2);
+
                     return _graphModel;
                 }
                 else
                 {
                     // Create the plot model
                     PlotModel _graphModel = new PlotModel() { Title = "Verbrauchsdaten", Subtitle = Name };
+                    //axes
+                    _graphModel.Axes.Add(new DateTimeAxis
+                    {
+                        Position = AxisPosition.Bottom,
+                        StringFormat = "dd/MM/yyyy",
+                        Title = "Datum",
+                        //MinorIntervalType = DateTimeIntervalType.Months,
+                        IntervalType = DateTimeIntervalType.Days,
+                        //MajorGridlineStyle = LineStyle.Dash,
+                        MinorGridlineStyle = LineStyle.Solid,
+                    });
+
                     // Create two line series (markers are hidden by default)
                     var series1 = new LineSeries { Title = "Verbrauch", MarkerType = MarkerType.Circle };
                     foreach (CarRefuelViewModel crvm in CarRefuelViewModels)
@@ -190,6 +216,8 @@ namespace car_management.ViewModel
                     }
                     // Add the series to the plot model
                     _graphModel.Series.Add(series1);
+
+
                     return _graphModel;
                 }
 
